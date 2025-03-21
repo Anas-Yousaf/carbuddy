@@ -1,0 +1,490 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif; /* For headings */
+}
+p, a {
+    font-family: 'Roboto', sans-serif; /* For body text */
+}
+
+:root {
+    --main-color: #FCFAEE;
+    --car : #5990B6;
+    --element : #DA8359;
+    --text : #4A4947;
+    --icon : #A5B68D;
+}
+
+/* Navbar styling of the website */
+
+/* Make the navbar fixed at the top */
+.custom-navbar {
+    background-color: var(--main-color);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures it stays on top */
+}
+
+/* Logo styling */
+.nav-logo {
+    height: 40px;
+    transform: scale(3);
+}
+
+/* Center align the navigation links */
+.navbar-nav {
+    gap: 20px; /* Adds some spacing between the links */
+}
+
+/* Book Me button styles (hidden on small screens) */
+.book-me-btn {
+    margin-left: auto;
+    background-color: var(--element);
+    border: none;
+    padding-inline: 10px;
+    padding-block: 10px;
+    color: white;
+    border-radius: 10px;
+}
+
+/* Hide the "Book Me" button on small screens */
+.d-none {
+    display: none !important;
+}
+
+/* Show the "Book Me" button only on large screens */
+.d-lg-block {
+    display: block !important;
+}
+
+/* Offcanvas Menu styles for small screens */
+.offcanvas-body ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.offcanvas-body .nav-link {
+    color: #000;
+}
+
+/* Navbar link styles */
+.nav-link {
+    color: #000;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+/* Ensure the navbar-toggler is aligned to the left on small screens */
+.navbar-toggler {
+    position: absolute;
+    right: 20px;
+}
+
+/* Original styling remains unchanged */
+
+.hero-banner {
+    background-color: var(--main-color);
+    height: 33rem;
+    position: relative;
+}
+
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    top: 320px;
+    right: -130px;
+    transform: translateX(-50%);
+    width: 25rem;
+    height: 5rem;
+    background-color: var(--element);
+    z-index: 1;
+    border-radius: 50%;
+}
+
+.hero-banner-img {
+    height: 20rem;
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    z-index: 2;
+    animation: slideIn 0.8s ease-in-out;
+}
+
+.hero-banner-text {
+    height: 20rem;
+    position: absolute;
+    top: 170px;
+    left: 80px;
+    z-index: 2;
+    width: 510px;
+    animation: slideIn 0.8s ease-in-out;
+}
+
+.hero-banner-text h1 {
+    font-size: clamp(1rem, -5.25rem + 20vw, 6rem);
+    text-wrap: wrap;
+    color: var(--text);
+}
+
+.highlight-text {
+    color: var(--element);
+    display: inline-block;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+/* Add animations for the banner */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* section-2 styling*/
+
+
+.section-2 {
+    background-color: var(--main-color);
+    height: 37rem;
+}
+.section-2-heading {
+    color: var(--text);
+    text-align: center;
+}
+.line-2 {
+    border-top: 1px solid black;
+}
+
+.road{
+    height: 5px;
+    width: 100%;
+    background-color: var(--element);
+}
+.road-line {
+    width: 5px;
+    height: 100px;
+    background-color: var(--element);
+}
+
+.road-container {
+position: relative;
+height: 30rem;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.one {
+    position: absolute;
+    left: 60px;
+    top: 238px;
+}
+.mobile {
+    position: absolute;
+    left: 40px;
+    top: 330px;
+    font-size: 4rem;
+    color: var(--icon);
+}
+.one-text {
+    color: var(--text);
+    display: inline;
+    width: 150px;
+    text-indent: 0%;
+    padding: 5px;
+    position: absolute;
+    left: 0;
+    top: 395px;
+}
+/* line two */
+.two {
+    position: absolute;
+    top: 140px;
+}
+.car {
+    position: absolute;
+    top: 50px;
+    font-size: 4rem;
+    color: var(--icon);
+}
+.two-text {
+    color: var(--text);
+    display: inline;
+    width: 200px;
+    text-align: center;
+    text-indent: 0%;
+    padding: 5px;
+    padding-left: 20px;
+    position: absolute;
+    top: 110px;
+}
+/* three line */
+.three {
+    position: absolute;
+    top: 238px;
+    right: 60px;
+}
+.door {
+    position: absolute;
+    top: 330px;
+    right: 20px;
+    font-size: 4rem;
+    color: var(--icon);
+    
+}
+.three-text {
+    position: absolute;
+    color: var(--text);
+    display: inline;
+    width: 150px;
+    text-indent: 0%;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    top: 395px;
+}
+
+
+/* section 3 customer reviews */
+
+.section-3-heading {
+    color: var(--text);
+    text-align: center;
+}
+.section-3 {
+    background-color: var(--main-color);
+}
+.testimonial-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.car-container {
+    position: relative;
+    width: 300px;
+    text-align: center;
+}
+
+/* Hidden by default */
+.car-container::before,
+.car-container::after {
+    position: absolute;
+    content: ' ';
+    height: 20px;
+    width: 20px;
+    background: radial-gradient(circle, #ffffff 60%, #f0f0f0);
+    border: 3px solid #cfcfcf;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;  /* Hidden by default */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.car-container::before {
+    top: 30px;
+    left: 60px;
+}
+
+.car-container::after {
+    top: 60px;
+    right: 200px;
+}
+
+/* When bubble appears, show these pseudo-elements */
+.show-before-after::before,
+.show-before-after::after {
+    opacity: 1;
+}
+
+#car-image {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    left: 200%;  /* Start off-screen to the right */
+    transition: all 1s ease-in-out;
+}
+
+.bubble-cloud {
+    position: absolute;
+    top: -80px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, #ffffff 60%, #f0f0f0);
+    border: 3px solid #cfcfcf;
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 200px;  /* Fixed width */
+    height: 100px;  /* Fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    opacity: 0;  /* Hidden by default */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+
+
+@keyframes carDriveIn {
+    0% { left: 300%; }
+    100% { left: 0; }
+}
+
+@keyframes carDriveOut {
+    0% { left: 0; }
+    100% { left: -300%; }
+}
+
+@keyframes bubbleAppear {
+    0% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .car-container {
+        width: 250px;
+    }
+
+    .bubble-cloud {
+        width: 180px;  /* Adjusted fixed width for smaller screens */
+        height: 90px;  /* Adjusted fixed height */
+        font-size: 0.9rem;
+    }
+}
+
+
+
+
+/* section 4 syling */
+
+.section-4 {
+    background-color: var(--main-color);
+}
+
+.section-4-heading h2 {
+    color: var(--text);
+    text-align: center;
+}
+
+
+/* blog banner styling */
+.blog-section {
+    display: flex;
+    justify-content: center ;
+    gap: 15px;
+}
+.blog-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 15px 0;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: var(--element);
+    height: 30rem; /* Fixed height */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  .blog-card:hover .blog-img img {
+    transform: scale(1.2);
+  }
+  .blog-img {
+    display: flex;
+    justify-content: center;
+    background-color: var(--main-color);
+    border-radius: 1rem;
+    margin-top: 10px;
+    max-height: 40%;
+  }
+  
+  .blog-img img {
+    max-height: 100%;
+    max-width: 80%;
+    object-fit: cover;
+  }
+  .blog-content-container {
+    padding-inline: 5px;
+    height: 16rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-block: 10px;
+  }
+  .blog-title {
+    height: 2.5rem;
+    padding-inline: 5px;
+    padding-block: 5px;
+    overflow: hidden;
+  }
+  .blog-title h4 {
+    text-transform: capitalize;
+    color: var(--text);
+  }
+  .blog-content {
+    height: 10rem;
+    overflow: hidden; /* Hide any overflowing text */
+    padding: 10px;
+    box-sizing: border-box; /* Include padding in height calculation */
+    color: var(--text);
+  }
+  .blog-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .blog-action button {
+    border: none;
+    background-color: var(--main-color);
+    padding-inline: 5px;
+    padding-block: 5px;
+    width: 90px;
+    text-wrap: nowrap;
+    overflow: hidden;
+    transition: width 0.5s ease-in-out;
+    border-radius: 1rem;
+    margin-left: 3px;
+    color: var(--text);
+  }
+  .blog-action:hover button {
+    width: 120px;
+  }
+
+
+
+  /* section 5 */
+
+  .section-5 {
+    background-color: var(--main-color);
+    height: 37rem;
+}
+
+.section-5-heading h2 {
+    color: var(--text);
+    text-align: center;
+}
