@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     dynamicText.innerHTML = ""; // Clear the text initially
 
     let index = 0;
+    
 
     function typeLetter() {
         if (index < text.length) {
