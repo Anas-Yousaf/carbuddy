@@ -138,3 +138,9 @@ blogCard.classList.add('col-md-3', 'blog-card');
  blogSection.append(blogCard);
 
  } );
+
+
+
+
+ // Update copyright year automatically
+document.getElementById('year').textContent = new Date().getFullYear();
