@@ -346,31 +346,36 @@ justify-content: center;
 
 
 /* section 3 customer reviews */
-
 .section-3-heading {
     color: var(--text);
     text-align: center;
-}
-.section-3 {
+  }
+  
+  .section-3 {
     background-color: var(--main-color);
-}
-.testimonial-section {
+    padding-bottom: 2rem;
+  }
+  
+  .testimonial-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 85vh; /* Changed from 100vh for better mobile display */
     overflow: hidden;
-}
-
-.car-container {
+    padding: 2rem 0;
+  }
+  
+  .car-container {
     position: relative;
-    width: 300px;
+    width: 100%;
+    max-width: 300px; /* Maximum size */
     text-align: center;
-}
-
-/* Hidden by default */
-.car-container::before,
-.car-container::after {
+    margin: 0 auto;
+  }
+  
+  /* Hidden by default */
+  .car-container::before,
+  .car-container::after {
     position: absolute;
     content: ' ';
     height: 20px;
@@ -381,88 +386,134 @@ justify-content: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     opacity: 0;  /* Hidden by default */
     transition: opacity 0.5s ease-in-out;
-}
-
-.car-container::before {
+  }
+  
+  .car-container::before {
     top: 30px;
     left: 60px;
-}
-
-.car-container::after {
+  }
+  
+  .car-container::after {
     top: 60px;
     right: 200px;
-}
-
-/* When bubble appears, show these pseudo-elements */
-.show-before-after::before,
-.show-before-after::after {
+  }
+  
+  /* When bubble appears, show these pseudo-elements */
+  .show-before-after::before,
+  .show-before-after::after {
     opacity: 1;
-}
-
-#car-image {
+  }
+  
+  #car-image {
     width: 100%;
     max-width: 100%;
     position: relative;
     left: 200%;  /* Start off-screen to the right */
     transition: all 1s ease-in-out;
-}
-
-.bubble-cloud {
+  }
+  
+  .bubble-cloud {
     position: absolute;
     top: -80px;
+    left: 5%;
     transform: translateX(-50%);
     background: radial-gradient(circle, #ffffff 60%, #f0f0f0);
     border: 3px solid #cfcfcf;
-    padding: 20px;
+    padding: 15px;
     border-radius: 50px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    width: 200px;  /* Fixed width */
-    height: 100px;  /* Fixed height */
+    width: 80%;  /* Responsive width */
+    max-width: 200px;  /* Maximum width */
+    min-height: 80px;  /* Minimum height */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 1rem;
+    font-size: clamp(0.8rem, 2.5vw, 1rem); /* Responsive font size */
     opacity: 0;  /* Hidden by default */
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-}
-
-
-
-@keyframes carDriveIn {
+  }
+  
+  /* Animation keyframes */
+  @keyframes carDriveIn {
     0% { left: 300%; }
     100% { left: 0; }
-}
-
-@keyframes carDriveOut {
+  }
+  
+  @keyframes carDriveOut {
     0% { left: 0; }
     100% { left: -300%; }
-}
-
-@keyframes bubbleAppear {
+  }
+  
+  @keyframes bubbleAppear {
     0% { opacity: 0; transform: scale(0.5); }
     100% { opacity: 1; transform: scale(1); }
-}
-
-@media (max-width: 768px) {
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .testimonial-section {
+      min-height: 40vh;
+      padding: 1rem 0;
+    }
+    
     .car-container {
-        width: 250px;
+      max-width: 250px;
     }
-
+    
+    .car-container::before {
+      top: 20px;
+      left: 40px;
+    }
+    
+    .car-container::after {
+      top: 50px;
+      right: 150px;
+    }
+    
     .bubble-cloud {
-        width: 180px;  /* Adjusted fixed width for smaller screens */
-        height: 90px;  /* Adjusted fixed height */
-        font-size: 0.9rem;
+      top: -70px;
+      padding: 10px;
+      min-height: 70px;
     }
-}
-
-
+  }
+  
+  @media (max-width: 576px) {
+    .testimonial-section {
+      min-height: 35vh;
+    }
+    
+    .car-container {
+      max-width: 200px;
+    }
+    
+    .car-container::before,
+    .car-container::after {
+      height: 15px;
+      width: 15px;
+    }
+    
+    .car-container::before {
+      top: 25px;
+      left: 30px;
+    }
+    
+    .car-container::after {
+      top: 40px;
+      right: 120px;
+    }
+    
+    .bubble-cloud {
+      top: -60px;
+      min-height: 60px;
+      font-size: 0.8rem;
+    }
+  }
 /* section 3 car booking details styling  */
 
-
 .booking-section {
-    padding: 2rem 1rem;
-    max-width: 100%;
+    padding: 2rem 0; /* Changed from 1rem to 0 for full width */
+    width: 100%;
     margin: 0 auto;
     background-color: var(--main-color);
 }
@@ -476,18 +527,17 @@ justify-content: center;
 
 .car-slider {
     position: relative;
-    margin: 0 auto;
-    max-width: 900px;
+    width: 100%; /* Full width */
     overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .car-slide {
     display: none;
-    background: white;
+    background: var(--main-color);
     padding: 2rem;
     transition: transform 0.5s ease;
+    max-width: 1200px; /* Maximum content width */
+    margin: 0 auto; /* Center the content */
 }
 
 .car-slide.active {
@@ -501,7 +551,8 @@ justify-content: center;
 }
 
 .car-ramp {
-    background: linear-gradient(to bottom, #e0e0e0, #f5f5f5);
+    /* background: linear-gradient(to bottom, #e0e0e0, #f5f5f5); */
+    background-color: var(--element);
     padding: 2rem;
     border-radius: 10px;
     position: relative;
@@ -568,6 +619,7 @@ justify-content: center;
     justify-content: center;
     margin-top: 1.5rem;
     gap: 1rem;
+    padding: 0 1rem; /* Add padding for mobile */
 }
 
 .slider-btn {
@@ -610,6 +662,64 @@ justify-content: center;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+.line-2 {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .car-slide {
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .car-name {
+        font-size: 1.5rem;
+    }
+    
+    .car-specs {
+        gap: 1rem;
+    }
+    
+    .car-price {
+        font-size: 1.3rem;
+    }
+    
+    .book-now-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .car-ramp {
+        padding: 1.5rem;
+    }
+    
+    .car-specs {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .slider-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .slider-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
 /* Modal Styles */
 .modal {
     display: none;
@@ -1047,3 +1157,35 @@ justify-content: center;
     }
     
 }
+
+
+/* Scroll to top button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--element);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .scroll-to-top:hover {
+    background-color: var(--car);
+    transform: translateY(-3px);
+  }
