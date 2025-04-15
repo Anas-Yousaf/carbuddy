@@ -145,3 +145,211 @@ blogCard.classList.add('col-md-3', 'blog-card');
 
  // Update copyright year automatically
 document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+// booking car detaiils
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.car-slide');
+
+function showSlide(n) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+    showSlide(currentSlide - 1);
+}
+
+let latestDetails = null;
+
+function openBookingModal(name, price, image) {
+    document.getElementById('car-name-input').value = name;
+    document.getElementById('car-price-input').value = price;
+    document.getElementById('car-image-input').value = image;
+    document.getElementById('bookingModal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('bookingModal').style.display = 'none';
+}
+
+function closePdfModal() {
+    document.getElementById('pdfModal').style.display = 'none';
+}
+
+// Add this function to generate QR codes
+function generateQRCode(text, elementId, size = 128) {
+    const qr = qrcode(0, 'L');
+    qr.addData(text);
+    qr.make();
+    const qrImg = qr.createImgTag(4, 0);
+    const qrContainer = document.getElementById(elementId);
+    qrContainer.innerHTML = qrImg;
+    const img = qrContainer.querySelector('img');
+    img.style.width = `${size}px`;
+    img.style.height = `${size}px`;
+    img.style.display = 'block';
+    img.style.margin = '0 auto';
+}
+
+// Update the booking form submission handler
+document.getElementById('bookingForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const carName = document.getElementById('car-name-input').value;
+    const carPrice = parseFloat(document.getElementById('car-price-input').value);
+    const carImage = document.getElementById('car-image-input').value;
+    const fullName = document.getElementById('full-name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const pickupDateRaw = document.getElementById('pickup-date').value;
+    const pickupTime = document.getElementById('pickup-time').value;
+    const duration = parseInt(document.getElementById('duration').value);
+    const specialRequests = document.getElementById('special-requests').value;
+
+    const totalPrice = carPrice * duration;
+
+    const formattedDate = new Date(pickupDateRaw).toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    latestDetails = {
+        carName,
+        carPrice,
+        carImage,
+        fullName,
+        email,
+        phone,
+        pickupDate: formattedDate,
+        pickupTime,
+        duration,
+        totalPrice,
+        specialRequests
+    };
+
+    // Generate booking reference
+    const bookingRef = 'CB-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+    latestDetails.bookingRef = bookingRef;
+
+    // Create QR code data string
+    const qrData = `CarBuddy Booking\nRef: ${bookingRef}\nCar: ${carName}\nCustomer: ${fullName}\nPickup: ${formattedDate} at ${pickupTime}\nTotal: $${totalPrice}`;
+
+    const content = `
+        <div style="text-align: center;">
+            <img src="assets/images/logo  1.jpeg" alt="CarBuddy" style="max-width: 100px;" />
+            <h2 style="color: #5990B6;">CarBuddy - Booking Invoice</h2>
+        </div>
+        <hr />
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                <p><strong>Booking Reference:</strong> ${bookingRef}</p>
+                <p><strong>Car:</strong> ${carName}</p>
+                <p><strong>Rate:</strong> $${carPrice}/day</p>
+                <p><strong>Rental Duration:</strong> ${duration} day(s)</p>
+                <p><strong>Total Price:</strong> $${totalPrice}</p>
+            </div>
+            <div id="qr-code-container"></div>
+        </div>
+        <hr />
+        <p><strong>Name:</strong> ${fullName}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Pickup Date:</strong> ${formattedDate}</p>
+        <p><strong>Pickup Time:</strong> ${pickupTime}</p>
+        ${specialRequests ? `<p><strong>Special Requests:</strong> ${specialRequests}</p>` : ''}
+    `;
+
+    document.getElementById('pdf-content').innerHTML = content;
+    document.getElementById('pdfModal').style.display = 'block';
+    
+    // Generate and display QR code
+    generateQRCode(qrData, 'qr-code-container', 100);
+    
+    closeModal();
+});
+
+// Update the PDF generation function to include QR code
+async function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const d = latestDetails;
+    if (!d) return alert("Missing details");
+
+    const logo = 'assets/images/logo  1.jpeg';
+    const img = new Image();
+    img.src = logo;
+
+    img.onload = async () => {
+        // Add logo
+        doc.addImage(img, 'PNG', 80, 10, 50, 20);
+        
+        // Add title
+        doc.setFontSize(18);
+        doc.setTextColor(89, 144, 182);
+        doc.text('CarBuddy - Booking Invoice', 105, 40, { align: 'center' });
+
+        doc.setFontSize(12);
+        doc.setTextColor(0, 0, 0);
+
+        let y = 55;
+        doc.text(`Booking Reference: ${d.bookingRef}`, 20, y);
+        doc.text(`Car: ${d.carName}`, 20, y += 10);
+        doc.text(`Rate: $${d.carPrice}/day`, 20, y += 10);
+        doc.text(`Duration: ${d.duration} day(s)`, 20, y += 10);
+        doc.text(`Total Price: $${d.totalPrice}`, 20, y += 10);
+
+        // Generate QR code for PDF
+        const qr = qrcode(0, 'L');
+        const qrData = `CarBuddy Booking\nRef: ${d.bookingRef}\nCar: ${d.carName}\nCustomer: ${d.fullName}\nPickup: ${d.pickupDate} at ${d.pickupTime}\nTotal: $${d.totalPrice}`;
+        qr.addData(qrData);
+        qr.make();
+        const qrImgData = qr.createDataURL(4, 0);
+        
+        // Add QR code to PDF (positioned to the right of the details)
+        doc.addImage(qrImgData, 'PNG', 140, y - 40, 40, 40);
+
+        y += 10;
+        doc.line(20, y, 190, y);
+        y += 10;
+
+        doc.text(`Name: ${d.fullName}`, 20, y);
+        doc.text(`Email: ${d.email}`, 20, y += 10);
+        doc.text(`Phone: ${d.phone}`, 20, y += 10);
+        doc.text(`Pickup Date: ${d.pickupDate}`, 20, y += 10);
+        doc.text(`Pickup Time: ${d.pickupTime}`, 20, y += 10);
+        if (d.specialRequests) {
+            doc.text(`Special Requests: ${d.specialRequests}`, 20, y += 10);
+        }
+
+        y += 15;
+        doc.setFontSize(10);
+        doc.setTextColor(100);
+        doc.text("Terms & Conditions", 20, y);
+        doc.setFontSize(9);
+        const terms = [
+            "• Booking is subject to availability.",
+            "• Cancellations within 24 hours may incur charges.",
+            "• ID verification is required during pickup.",
+            "• Present this QR code at pickup for verification."
+        ];
+        terms.forEach((line, i) => {
+            doc.text(line, 20, y + 6 + (i * 6));
+        });
+
+        doc.setFontSize(10);
+        doc.text("Thank you for choosing CarBuddy!", 105, 285, { align: 'center' });
+
+        doc.save(`CarBuddy_${d.bookingRef}_Invoice.pdf`);
+    };
+}

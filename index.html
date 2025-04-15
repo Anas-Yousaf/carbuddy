@@ -8,6 +8,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+
+
+    <!-- pdfjs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- qrjs -->
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+
+    
     <title>Rent a Car</title>
 </head>
 <body>
@@ -136,6 +147,186 @@
       <div class="line-2"></div>
   </div>
 
+<!-- section 3 car booking details sections  -->
+
+
+<section class="booking-section">
+  <h2 class="section-title">Rent Your Dream Car</h2>
+  
+  <div class="car-slider">
+      <!-- Car Slide 1 -->
+      <div class="car-slide active">
+          <div class="car-ramp">
+              <img src="https://vehicle-images.dealerinspire.com/4ae3-110004142/thumbnails/large/4T1DAACK0SU599264/8777c7edc8e3f2e5783f432d49b3297e.png" alt="Toyota Camry" class="car-image" id="current-car-image">
+          </div>
+          <div class="car-details">
+              <h3 class="car-name">Toyota Camry</h3>
+              <div class="car-specs">
+                  <div class="spec-item">
+                      <i class="fas fa-users spec-icon"></i>
+                      <span>5 Seats</span>
+                  </div>
+                  <div class="spec-item">
+                      <i class="fas fa-gas-pump spec-icon"></i>
+                      <span>Hybrid</span>
+                  </div>
+                  <div class="spec-item">
+                      <i class="fas fa-tachometer-alt spec-icon"></i>
+                      <span>8.8L/100km</span>
+                  </div>
+                  <div class="spec-item">
+                      <i class="fas fa-car spec-icon"></i>
+                      <span>Sedan</span>
+                  </div>
+              </div>
+              <div class="car-price">$49 <span class="per-day">/day</span></div>
+              <button class="book-now-btn" onclick="openBookingModal('Toyota Camry', 49, 'vehicle-images.dealerinspire.com/4ae3-110004142/thumbnails/large/4T1DAACK0SU599264/8777c7edc8e3f2e5783f432d49b3297e.png')">
+                  Book Now <i class="fas fa-calendar-check"></i>
+              </button>
+          </div>
+      </div>
+      
+      <!-- Car Slide 2 -->
+      <div class="car-slide">
+          <div class="car-ramp">
+              <img src="https://www.vdm.ford.com/content/dam/na/ford/en_us/images/mustang/2025/jellybeans/Ford_Mustang_2025_100A_PYZ_88D_89W_13A_COU_64F_99H_44U_EBST_DEFAULT_EXT_4.png" alt="Ford Mustang" class="car-image">
+          </div>
+          <div class="car-details">
+              <h3 class="car-name">Ford Mustang</h3>
+              <div class="car-specs">
+                  <div class="spec-item">
+                      <i class="fas fa-users spec-icon"></i>
+                      <span>4 Seats</span>
+                  </div>
+                  <div class="spec-item">
+                      <i class="fas fa-gas-pump spec-icon"></i>
+                      <span>Premium</span>
+                  </div>
+                  <div class="spec-item">
+                      <i class="fas fa-tachometer-alt spec-icon"></i>
+                      <span>12.4L/100km</span>
+                  </div>
+                  <div class="spec-item">
+                      <i class="fas fa-car spec-icon"></i>
+                      <span>Sports</span>
+                  </div>
+              </div>
+              <div class="car-price">$89 <span class="per-day">/day</span></div>
+              <button class="book-now-btn" onclick="openBookingModal('Ford Mustang', 89, 'www.vdm.ford.com/content/dam/na/ford/en_us/images/mustang/2025/jellybeans/Ford_Mustang_2025_100A_PYZ_88D_89W_13A_COU_64F_99H_44U_EBST_DEFAULT_EXT_4.png')">
+                  Book Now <i class="fas fa-calendar-check"></i>
+              </button>
+          </div>
+      </div>
+      
+      <!-- Car Slide 3 -->
+      <div class="car-slide">
+          <div class="car-ramp">
+              <img src="https://mystrongad.com/BPH_BillPageHonda/Digital/CR-V/2023/CAR%20CUTS/WEBP/23-Honda-CR-V-Platinum-White-Pearl.webp" alt="Honda CR-V" class="car-image">
+          </div>
+          <div class="car-details">
+              <h3 class="car-name">Honda CR-V</h3>
+              <div class="car-specs">
+                  <div class="spec-item">
+                      <i class="fas fa-users spec-icon"></i>
+                      <span>5 Seats</span>
+                  </div>
+                  <div class="spec-item">
+                      <i class="fas fa-gas-pump spec-icon"></i>
+                      <span>Regular</span>
+                  </div>
+                  <div class="spec-item">
+                      <i class="fas fa-tachometer-alt spec-icon"></i>
+                      <span>7.8L/100km</span>
+                  </div>
+                  <div class="spec-item">
+                      <i class="fas fa-car spec-icon"></i>
+                      <span>SUV</span>
+                  </div>
+              </div>
+              <div class="car-price">$65 <span class="per-day">/day</span></div>
+              <button class="book-now-btn" onclick="openBookingModal('Honda CR-V', 65, 'mystrongad.com/BPH_BillPageHonda/Digital/CR-V/2023/CAR%20CUTS/WEBP/23-Honda-CR-V-Platinum-White-Pearl.webp')">
+                  Book Now <i class="fas fa-calendar-check"></i>
+              </button>
+          </div>  
+      </div>
+      
+      <div class="slider-nav">
+          <button class="slider-btn" onclick="prevSlide()">
+              <i class="fas fa-chevron-left"></i> Previous
+          </button>
+          <button class="slider-btn" onclick="nextSlide()">
+              Next <i class="fas fa-chevron-right"></i>
+          </button>
+      </div>
+  </div>
+</section>
+
+
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h3 class="modal-title">Book Your Car</h3>
+        <form id="bookingForm" class="booking-form">
+            <input type="hidden" id="car-name-input">
+            <input type="hidden" id="car-price-input">
+            <input type="hidden" id="car-image-input">
+            
+            <div class="form-group">
+                <label for="full-name" class="form-label">Full Name</label>
+                <input type="text" id="full-name" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" id="phone" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="pickup-date" class="form-label">Pickup Date</label>
+                <input type="date" id="pickup-date" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="pickup-time" class="form-label">Pickup Time</label>
+                <input type="time" id="pickup-time" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="duration" class="form-label">Rental Duration (days)</label>
+                <input type="number" id="duration" class="form-input" min="1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="special-requests" class="form-label">Special Requests</label>
+                <textarea id="special-requests" class="form-input" rows="3"></textarea>
+            </div>
+            
+            <button type="submit" class="form-submit">Complete Booking</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+<!-- PDF Preview Modal -->
+<div id="pdfModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9999; padding: 30px; overflow-y: auto;">
+  <div style="background: white; max-width: 700px; margin: auto; padding: 30px; border-radius: 8px; position: relative;">
+      <button onclick="closePdfModal()" style="position: absolute; top: 10px; right: 15px; font-size: 20px; border: none; background: none;">&times;</button>
+      <div id="pdf-content"></div>
+      <button onclick="generatePDF()" style="margin-top: 20px; padding: 10px 20px; background: #5990B6; color: white; border: none; border-radius: 5px; cursor: pointer;">Print Invoice</button>
+  </div>
+</div>
+
+
+
   <!-- section 4 blogs  -->
   <!-- blogs section starts from here -->
 
@@ -178,17 +369,6 @@
     <div class="line-2"></div>
     </div>
 
-
-    <!-- section 5  -->
-    <!-- Availables Cars -->
-<!-- 
-    <div class="container-fluid section-5">
-      <div class="row">
-        <div class="col-12 section-5-heading mt-5">
-          <h2>Availables Options</h2>
-        </div>
-      </div>
-    </div> -->
 
 
 
@@ -257,6 +437,15 @@
 
 
 
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+
+
+    <!-- Include jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 
     <script src="js/app.js"></script>
